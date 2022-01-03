@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
+
+const Portafolio = () => {
+  const loggedIn = false
+  if(!loggedIn) {
+    return <Navigate to='/' />
+  }
+
+  return (
+    <h1>Portafolio</h1>
+  )
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Inicio</Link>
+          </li>
+          <li>
+            <Link to="/portafolio">Portafolio</Link>
+          </li>
+          <li>
+            <Link to="/perfil">Perfil</Link>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <Routes>
+          <Route path="/" element={ <h1>Inicio</h1> }/>
+          <Route path="/portafolio" element={ <Portafolio />}/>
+          <Route path="/perfil" element={ <h1>Perfil</h1> }/>
+          <Route path="*" element={ <h1>Error 404</h1> }/>
+        </Routes>
+      </section>
     </div>
   );
 }
